@@ -1,0 +1,81 @@
+{% extends "header.html" %}
+{% block content %}
+
+<!-- {% for post in posts or [] %}
+<div class="post">
+    <div class="post_info">
+        <div class="poster_image">
+            <a href="/users/{{post.owner}}/">
+                <img src="{{post.owner_img_url}}" alt="image not found.">
+            </a>
+        </div>
+        <div class="user_name">
+            <a href="/users/{{post.owner}}/">
+                {{post.owner}}
+            </a>
+        </div>
+        <div class="poster_time">
+            <a href="/posts/{{post.postid}}/">
+                {{post.timestamp}}
+            </a>
+        </div>
+    </div>
+
+    <div class="post_image">
+        <a href="/posts/{{post.postid}}/">
+            <img src="{{post.img_url}}" alt="image not found.">
+        </a>
+    </div>
+
+    <div class="post_reply">
+        {% if post.likes|int == 1 %}
+        <p>1 like</p>
+        {% else %}
+        <p>{{post.likes}} likes</p>
+        {% endif %}
+        {% for comment in post.comments or [] %}
+        <p>
+            <span class="user_name">
+                <a href="/users/{{comment.owner}}/">
+                    {{comment.owner}}
+                </a>
+            </span>
+            {{comment.text}}
+        </p>
+        {% endfor %}
+        {% if post.like|int > 0 %}
+        <form action="/likes/?target=/" method="post" enctype="multipart/form-data" className="like-unlike-button">
+        <input type="hidden" name="operation" value="unlike"/>
+        <input type="hidden" name="postid" value="{{post.postid}}"/>
+        <input type="submit" name="unlike" value="unlike"/>
+        </form>
+        {% else %}
+        <form action="/likes/?target=/" method="post" enctype="multipart/form-data" className="like-unlike-button">
+        <input type="hidden" name="operation" value="like"/>
+        <input type="hidden" name="postid" value="{{post.postid}}"/>
+        <input type="submit" name="like" value="like"/>
+        </form>
+        {% endif %}
+        <form action="/comments/?target=/" method="post" enctype="multipart/form-data"  className="comment-form">
+        <input type="hidden" name="operation" value="create"/>
+        <input type="hidden" name="postid" value="{{post.postid}}"/>
+        <input type="text" name="text" required/>
+        <input type="submit" name="comment" value="comment"/>
+        </form>
+        <button className="delete-comment-button">
+            FIXME-button-text-here
+        </button>
+
+    </div>
+</div>
+{% endfor %} -->
+
+<div id="reactEntry">
+    Loading ...
+  
+</div>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/bundle.js') }}"></script>
+
+
+{% endblock %}

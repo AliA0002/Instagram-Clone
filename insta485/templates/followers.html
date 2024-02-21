@@ -1,0 +1,40 @@
+{% extends "header.html" %}
+{% block content %}
+
+<div class="bold_title">Followers</div>
+
+{% for p in followers or [] %}
+<div class="user_summary">
+    <div class="poster_image">
+        <a href="/users/{{p.username}}/">
+            <img src="{{p.user_img_url}}" alt="image not found.">
+        </a>
+    </div>
+    <div class="user_name">
+        <a href="/users/{{p.username}}/">
+            {{p.username}}
+        </a>
+    </div>
+    <div class="follow_status">
+        {% if logname != p.username %}
+            {% if p.logname_follows_username %}
+        following
+        <form action="/following/?target=/users/{{username}}/followers/" method="post" enctype="multipart/form-data">
+            <input type="submit" name="unfollow" value="unfollow"/>
+            <input type="hidden" name="username" value="{{p.username}}"/>
+            <input type="hidden" name="operation" value="unfollow"/>
+        </form>
+            {% else %}
+        not following
+        <form action="/following/?target=/users/{{username}}/followers/" method="post" enctype="multipart/form-data">
+            <input type="submit" name="follow" value="follow"/>
+            <input type="hidden" name="username" value="{{p.username}}"/>
+            <input type="hidden" name="operation" value="follow"/>
+        </form>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

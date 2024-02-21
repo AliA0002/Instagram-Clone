@@ -1,0 +1,20 @@
+#!/bin/bash
+# insta485db
+
+# Stop on errors
+# See https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
+set -Eeuo pipefail
+
+# Sanity check command line options
+usage() {
+  echo "Usage: $0"
+}
+
+if [ ! -f "var/insta485.sqlite3" ]; then
+    ./bin/insta485db create
+fi
+set -x
+test -e var/insta485.sqlite3
+export FLASK_ENV=development
+export FLASK_APP=insta485
+flask run --host 0.0.0.0 --port 8000
